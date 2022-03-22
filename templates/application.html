@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <meta charset="UTF-8">
+   <title>Faux Mortgage Group</title>
+      <style>
+  .container {
+  display: flex;
+  align-items: left;
+  justify-content: left
+}
+
+img {
+  max-width: 100%
+}
+
+.image {
+  flex-basis: 10%
+}
+
+.text {
+  font-size: 20px;
+  padding-left: 20px;
+}
+
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <img src="../static/logo.png" width="50" height="50">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/statistics">Statistics</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/capstone">Machine Language</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/application">Apply Today!</a>
+      </li>
+      <li class="nav-item-right">
+        <a class="nav-link"  href="/login">Employee Login</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+        <center><h1> Loan Status Form</h1></center>
+       <center> <p>
+            <h3>Enter your information and we'll let you know if you're approved instantly</h3>
+        </p></center>
+   <center> <form class="form-group" action ='/sub' method="POST">
+        <label for="gender"><b>Gender</b></label>
+        <select id="gender" name="gender" class="input"  required>
+                <option value="">Gender: </option>
+            <option value="m">Male</option>
+            <option value="f">Female</option>
+            </select><br><br>
+        <label for="married"><b>Relationship Status: </b></label>
+        <select id="married" name="married" class="input" required>
+            <option value="">Relationship Status</option>
+            <option value="single">Single</option>
+            <option value="married">Married</option>
+            <option value="single">Divorced</option>
+            <option value="single">Widowed</option>
+        </select><br><br>
+        <label for="dependents"><b>Dependents: </b></label>
+        <select id="dependents" name="dependents" class="input" required>
+            <option value="">Dependents</option>
+            <option value="0">Zero, 0</option>
+            <option value="1">One, 1</option>
+            <option value="2">Two, 2</option>
+            <option value="3">Three or more, 3+</option>
+        </select><br><br>
+        <label for="education"><b>Education: </b></label>
+        <select id="education" name="education" class="input" required>
+            <option value="">Education</option>
+            <option value="not">High School/ GED </option>
+            <option value="not">Certificate</option>
+            <option value="not">Associates </option>
+            <option value="grad">Bachelors </option>
+            <option value="grad">Masters </option>
+            <option value="grad">PhD </option>
+        </select><br><br>
+        <label for="employed"><b>Employment : </b></label>
+        <select id ="employed" name="employed" class="input" required>
+            <option value="">Employment</option>
+            <option value="employed">Full-Time</option>
+            <option value="employed">Part-Time</option>
+            <option value="self">Self Employed</option></select><br><br>
+        <label for="income"><b>Income: </b></label>
+        <input id="income" name="income" class="input"  type="number" placeholder="Example: 75000" required ><br><br>
+        <label for="co"><b>Additional Income: </b></label>
+        <input id="co" name="co" class="input" type="number" placeholder="Co-Applicant Income, Child Support, etc.." required><br><br>
+        <label for="loan"><b>Loan: </b></label>
+        <input id="loan" name="loan" class="input" placeholder="Example: 350000" required><br><br>
+        <label for="term"><b>Loan Term Length: </b></label>
+        <select id="term" name="term" class="input" required>
+            <option value="">Term Length </option>
+            <option value="300">300 Months</option>
+            <option value="360">360 Months</option>
+            <option value="380">380 Months</option>
+            <option value="480">480 Months</option>
+        </select><br><br>
+        <label for="credit"><b>Credit Range: </b> </label>
+        <select id="credit" name="credit"  class="input" required>
+            <option value="">Credit Range</option>
+            <option value="no">300 - 579. Poor</option>
+            <option value="no">580 - 669. Fair</option>
+            <option value="yes">670 - 739. Good</option>
+            <option value="yes">740 -799. Very Good</option>
+            <option value="yes">800 - 850. Excellent</option>
+        </select><br><br>
+        <label for="property_type"><b>Property Type: </b></label>
+        <select id="property_type" name="property_type" class="input" required>
+            <option value="">Property</option>
+            <option value="rural">Rural</option>
+            <option value="semi">Semi-Urban</option>
+            <option value="urban">Urban</option>
+        </select><br><br>
+        <input type="submit">
+
+
+    </form></center>
+
+<!-- Footer -->
+<br><br><br><br>
+
+    <div class="card-footer text-muted">
+      <div class="container">
+        <div class="image">
+          <img style="border:1px solid black;"  src="../static/logo.png" width="100" height="100">
+
+        </div>
+        <div class="text">
+          <h4>Let us help you find your dream home! </h4>
+          <h6>loan@fauxmorgtage.com<br>(123)456-789</h6>
+        </div>
+
+</div>
+      </div>
+</body>
+</html>
+
+<!-- Required Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+
+
+
