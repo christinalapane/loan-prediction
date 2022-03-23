@@ -54,9 +54,9 @@ def submit():
         dependents = request.form['dependents']
         education = request.form['education']
         employed = request.form['employed']
-        income = int(request.form['income'])
+        income = int(request.form['income'])/10
         co = int(request.form['co'])
-        loan = int(request.form['loan'])
+        loan = int(request.form['loan'])/10
         term = request.form['term']
         credit = request.form['credit']
         property_type = request.form['property_type']

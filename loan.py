@@ -1,4 +1,3 @@
-
 import numpy as np
 import pandas as pd
 from sklearn.metrics import accuracy_score
@@ -37,3 +36,5 @@ def loan_prediction(to_predict_list):
     result = dt_clf_gini.predict(to_predict)
 
     return result[0]
+
+
