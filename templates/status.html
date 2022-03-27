@@ -5,12 +5,42 @@
 }
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <meta charset="UTF-8">
-   <title>Faux Mortgage Group</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <title>Faux Mortgage Group</title>
   <style>
-  .container {
+
+.my-custom-scrollbar {
+position: relative;
+height: 200px;
+overflow: auto;
+}
+.table-wrapper-scroll-y {
+display: block;
+}
+
+
+
+  .container3 {
   display: flex;
   align-items: left;
   justify-content: left
+}
+
+
+
+.container2 {
+    background-color:#1e81b0;
+    color:white;
+    border:1px solid grey;
+    height: 200px;
+    width: 450px;
+    align:left;
+
+}
+
+
+
 }
 
 img {
@@ -26,6 +56,66 @@ img {
   padding-left: 20px;
 }
 
+.chartBox{
+width: 500px;
+padding: 20px;
+}
+
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 30%;
+  position: relative;
+  left: 30px;
+
+}
+
+table{
+    font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 30%;
+  position: relative;
+
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+
+}
+
+
+ td,  th {
+  border: 1px solid #ddd;
+  padding: 8px;
+
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #1e81b0;}
+
+ tr:nth-child(even){background-color: #f2f2f2;}
+
+ tr:hover {background-color: #1e81b0;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #1e81b0;
+  color: white;
+
+}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #86A5A4;
+  color: white;
+
+}
 </style>
 
 </head>
@@ -57,30 +147,226 @@ img {
 </nav>
 
 
-<center><p><h1 style='color:#1e81b0;'> Welcome {{user}}</h1><br><br><br></center>
+<center><p><h1 style='color:#1e81b0;'> Welcome {{user}}</h1><br></center>
 
 
 
 
-      <div style = " background-color:#1e81b0; color:white; border:1px solid grey;">
+     <center> <div class="container2">
        <center><h3>Alerts for today! </h3><br></center>
       <center> <p> Meet at 123 Main St with inspector at 10:30 am today <br><br>
         You have a meeting with the Jones's at 12:30 pm today.<br><br>
         Go over loan approval with the Smith's at 2:45 pm today <br></p></center>
-      </div><br><br><br>
+      </div></center><br><br><br>
+
+<center><h1><b><u>Faux Mortgage Group Dashboard</u></b>  </h1></center><br><br>
+
+<div class="row">
+ <div class="selectBox">
+        <select id="sales" >
+            <option value="248, 202, 164">All Properties</option>
+            <option value="179, 133, 110">Sold Properties</option>
+            <option value="69, 69, 54">On Market Properties</option>
+        </select>
+     <select id="loans">
+         <option value="2.3, 5.9 ">Total Finances (millions)</option>
+         <option value="53.8, 140.5 ">Average Finances (thousands)</option>
+     </select>
+ </div></div>
+
+<div class="row">
+<div class="row">
+<div class="chartBox">
+   <canvas id="myChart" ></canvas>
+</div>
+
+<div class="chartBox">
+    <canvas id="loanChart" ></canvas>
+</div>
+
+<div class="chartBox" style="height:10vh; width:40vh;">
+    <canvas id="pieChart" ></canvas>
+</div></div></div><br><br>
 <br><br><br>
 
-<center><h3>Stats on current clients : </h3>
 
-<img style="border:5px solid black;" src="/static/dashboard.png" width="1000" height="600" />
-</center>
-</body>
+<br><br><br>
+<h3><center>All Current Clients</center></h3>
+<div class="table-wrapper-scroll-y my-custom-scrollbar" style="w">
+    <center>
+<table>
+    <h1>
+                <!--Displaying the converted table-->
+                     {% for table in tables %}
+                    <h2>{{titles[loop.index]}}</h2>
+                    {{ table|safe }}
+                    {% endfor %}
+                </h1>
+</table></center>
+</div>
+
+
+
+<script>
+
+    const data ={
+    labels: ['Semi-Urban', 'Urban', 'Rural'],
+        datasets: [{
+            label: 'Total Properties',
+            data: [248, 202, 164],
+            backgroundColor: [
+                'rgba(100, 149, 237)',
+                'rgba(204, 204, 255 )',
+                'rgba(64, 224, 208 )'
+
+            ],
+            borderColor: [
+                'rgba(100, 149, 237)',
+                'rgba(204, 204, 255)',
+                'rgba(64, 224, 208 )'
+            ],
+            borderWidth: 1
+        }]
+    };
+
+
+    const config = {
+        type: 'bar',
+        data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                 }
+            }
+        }
+
+    };
+
+
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+    const sales = document.getElementById('sales');
+    sales.addEventListener('change', salesTracker);
+
+    function salesTracker(){
+       const label = sales.options[sales.selectedIndex].text;
+       myChart.data.datasets[0].label = label;
+        myChart.data.datasets[0].data = sales.value.split(',');
+        myChart.update();
+    }
+
+</script>
+
+
+<script>
+    const loanData ={
+    labels: ['Income', 'Loan'],
+        datasets: [{
+            label: 'Total Finances (millions)',
+            data: [2.3, 5.9],
+            backgroundColor: [
+                'rgba(100, 149, 237)',
+                'rgba(204, 204, 255 )'
+
+
+
+            ],
+            borderColor: [
+                'rgba(100, 149, 237)',
+                'rgba(204, 204, 255)'
+
+            ],
+            borderWidth: 1
+        }]
+    };
+
+
+    const config2 = {
+        type: 'bar',
+        data: loanData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                 }
+            }
+        }
+
+    };
+
+
+    const loanChart = new Chart(
+        document.getElementById('loanChart'),
+        config2
+    );
+    const loans = document.getElementById('loans');
+    loans.addEventListener('change', loanTracker);
+
+    function loanTracker(){
+       const label = loans.options[loans.selectedIndex].text;
+       loanChart.data.datasets[0].label = label;
+       loanChart.data.datasets[0].data = loans.value.split(',');
+       loanChart.update();
+
+    }
+
+</script>
+
+<script>
+
+    const pieData ={
+    labels: ['Approved', 'Denied'],
+        datasets: [{
+            label: 'Applicants',
+            data: [422, 134],
+            backgroundColor: [
+                'rgba(100, 149, 237)',
+                'rgba(204, 204, 255 )',
+                'rgba(64, 224, 208 )'
+
+            ],
+            borderColor: [
+                'rgba(100, 149, 237)',
+                'rgba(204, 204, 255)',
+                'rgba(64, 224, 208 )'
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    const config3 = {
+        type: 'pie',
+        data: pieData,
+        options: {}
+
+    };
+
+    const pieChart = new Chart(
+        document.getElementById('pieChart'),
+        config3
+    );
+
+</script>
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
 
 <!-- Footer -->
 <br><br><br><br>
 
     <div class="card-footer text-muted">
-      <div class="container">
+      <div class="container3">
         <div class="image">
           <img style="border:1px solid black;"  src="../static/logo.png" width="100" height="100">
 
@@ -93,7 +379,7 @@ img {
 </div>
       </div>
 
-
+</body>
 </html>
 
 <!-- Required Scripts -->
