@@ -8,7 +8,7 @@ app = Flask(__name__)
 # code for dashboard
 
 df = pd.read_csv('train.csv')
-market_df = pd.read_csv('static/address.csv')
+
 
 # client information
 df_banking = pd.DataFrame().assign(Loan_ID=df['Loan_ID'], Income=df['ApplicantIncome'],
