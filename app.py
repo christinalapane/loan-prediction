@@ -10,7 +10,6 @@ app = Flask(__name__)
 df = pd.read_csv('train.csv')
 market_df = pd.read_csv('static/address.csv')
 
-
 # client information
 df_banking = pd.DataFrame().assign(Loan_ID=df['Loan_ID'], Income=df['ApplicantIncome'],
                                    Co_Income=df['CoapplicantIncome'], Loan_Amount=df['LoanAmount'],
@@ -24,7 +23,11 @@ for i in range(614):
     names_list.append(names.get_full_name())
 
 df_banking.insert(1, 'Clients', names_list)
+loan_missing = df_banking['Loan_Amount'].isnull()
+term_missing = df_banking['Term_Length'].isnull()
 
+df_banking.loc[loan_missing, 'Loan_Amount'] = 146.0
+df_banking.loc[term_missing, 'Term_Length'] = 360
 
 
 @app.route('/', )
@@ -49,7 +52,7 @@ def capstone():
 
 @app.route('/status', methods=['POST', 'GET'])
 def status():
-    if request.method == 'POST' or  request.method == 'GET':
+    if request.method == 'POST' or request.method == 'GET':
         user = request.form['user']
         password = request.form['pass']
         data = df_banking
@@ -60,10 +63,10 @@ def status():
             return render_template('login.html', wrong=wrong)
 
 
-
 @app.route('/dashboard')
 def dash():
     return render_template('status.html')
+
 
 @app.route('/login')
 def login():
